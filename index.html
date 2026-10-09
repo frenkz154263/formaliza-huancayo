@@ -557,17 +557,15 @@ function gateGuia(){document.querySelectorAll('.acc details').forEach((dt,i)=>{c
  b.innerHTML=!logged()?dt.dataset.o.replace(/<h5>[^]*$/,'')+'<div class="lock"><b>Regístrate gratis</b><br>Crea tu cuenta para ver la guía.<br><button class="lnk" type="button" data-reg>Regístrate gratis →</button></div>':(pro()||i<lim(8)?dt.dataset.o:dt.dataset.o.replace(/<h5>[^]*$/,'')+LOCK)})}
 document.addEventListener('click',e=>{if(e.target.closest('[data-reg]')){pend=()=>{};openR()}});
 const ST={todo:'Por hacer',proc:'En proceso',ok:'Listo',rev:'Por revisar',na:'No aplica'};
-const prog=()=>ls.g(K.p)||{};
-const eff=(d,i)=>{const o=prog()[i];return o&&o.s?o.s:status(d)[i]};
-function syncProg(d){const q=prog(),e=steps.map((x,i)=>eff(d,i)),n=e.filter(x=>x==='ok').length;
- sendSheet({accion:'avance',avance:n+' de 8 listos',detalle:steps.map((x,i)=>x[0]+': '+ST[e[i]]+(q[i]&&q[i].at?' ('+q[i].at+')':'')).join(' · '),json:JSON.stringify(q)})}
-function setSt(d,i,v){const q=prog();if(v===status(d)[i])delete q[i];else q[i]={s:v,at:new Date().toLocaleDateString('es-PE')};ls.s(K.p,q);syncProg(d);render()}
+const MAPST={'listo':'ok','en proceso':'proc','por hacer':'todo','por revisar':'rev','no aplica':'na'};
+let PAS=null;
+const eff=(d,i)=>MAPST[String((PAS&&PAS[i])||'').trim().toLowerCase()]||status(d)[i];
 let EST=null;
-async function cargarEstado(){const u=user();if(!u)return;try{EST=await api({accion:'estado',correo:u.email,token:u.token});if(EST&&EST.error==='auth'){ls.r(K.u);EST=null}}catch(e){EST={ok:false}}render()}
+async function cargarEstado(){const u=user();if(!u)return;try{const q={correo:u.email,token:u.token};const r=await Promise.all([api(Object.assign({accion:'estado'},q)),api(Object.assign({accion:'pasos'},q))]);EST=r[0];PAS=r[1]&&r[1].ok?r[1].pasos:null;if((r[0]&&r[0].error==='auth')||(r[1]&&r[1].error==='auth')){ls.r(K.u);EST=null;PAS=null}}catch(err){EST={ok:false}}render()}
 function render(){
  if(user()&&!user().token)ls.r(K.u);
  const u=user();
- if(!u)EST=null;else if(EST===null){EST={cargando:1};cargarEstado()}
+ if(!u){EST=null;PAS=null}else if(EST===null){EST={cargando:1};cargarEstado()}
  $('acct').textContent=u?'Cuenta: '+u.email.split('@')[0].slice(0,12):'Registrarse';$('login').style.display=u?'none':'';
  gateGuia();
  if(!$('sum'))return;
@@ -575,11 +573,9 @@ function render(){
  sum.replaceChildren();pr.replaceChildren();
  let ef=null;
  if(d){ef=steps.map((x,i)=>eff(d,i));const n=ef.filter(x=>x==='ok').length;
-  sum.append(el('p','sm','Resumen de '+(d.nombre||'tu negocio')+' · '+d.rubro+' · '+d.distrito),el('p','sm','Avance: '+n+' de 8 listos. Cambia el estado de cada paso aquí.'));
+  sum.append(el('p','sm','Resumen de '+(d.nombre||'tu negocio')+' · '+d.rubro+' · '+d.distrito),el('p','sm','Avance: '+n+' de 8 listos. Este estado lo actualiza nuestro equipo.'));
   const bar=el('div','bar'),fi=el('i');fi.style.width=(n/8*100)+'%';bar.append(fi);sum.append(bar);
-  const ol=el('ol','sl');steps.forEach((x,i)=>{const li=el('li',ef[i]),sl=el('select','s ss');sl.setAttribute('aria-label','Estado: '+x[0]);
-   Object.keys(ST).forEach(k=>{const o=el('option',0,ST[k]);o.value=k;sl.append(o)});sl.value=ef[i];sl.onchange=()=>setSt(d,i,sl.value);
-   li.append(el('em',0,'0'+(i+1)),el('b',0,x[0]),sl);ol.append(li)});sum.append(ol)}
+  const ol=el('ol','sl');steps.forEach((x,i)=>{const li=el('li',ef[i]);li.append(el('em',0,'0'+(i+1)),el('b',0,x[0]),el('span','s',ST[ef[i]]));ol.append(li)});sum.append(ol)}
  const box=el('div','prem');
  if(u){
   box.append(el('h4',0,'Tu ruta y tu cuenta'),el('p','sm','Cuenta gratis · '+u.email+' · acceso completo'));
@@ -588,8 +584,8 @@ function render(){
    const dat=el('div','dat');dat.append(el('b',0,'Tus datos: '),document.createTextNode([d.nombre||'Tu negocio',d.rubro,d.distrito,LOC[d.local]||'',(d.ruc==='si'?'Con':'Sin')+' RUC',(d.lic==='si'?'Con':'Sin')+' licencia',(d.trab||0)+' trabajador(es)'].filter(Boolean).join(' · ')+' '));
    const ed=el('button','lnk','Editar datos');ed.type='button';ed.onclick=()=>{const dt=document.querySelector('.mine details');dt.open=true;dt.scrollIntoView({behavior:'smooth',block:'center'})};dat.append(ed);box.append(dat);
    const ord=[...ef.keys()].filter(i=>ef[i]!=='na').sort((a,b)=>(ef[a]==='ok')-(ef[b]==='ok')||a-b);
-   ord.forEach(i=>{const lb=el('label','rt'),cb=document.createElement('input');cb.type='checkbox';cb.checked=ef[i]==='ok';cb.onchange=()=>setSt(d,i,cb.checked?'ok':'todo');
-    const o=prog()[i],t=el('span');t.append(el('b',0,steps[i][0]+' · '+ST[ef[i]]+(o&&o.at?' · '+o.at:'')),el('br'),document.createTextNode(tip(i,d)));lb.append(cb,t);box.append(lb)})}
+   ord.forEach(i=>{const lb=el('label','rt'),cb=document.createElement('input');cb.type='checkbox';cb.checked=ef[i]==='ok';cb.disabled=true;
+    const t=el('span');t.append(el('b',0,steps[i][0]+' · '+ST[ef[i]]),el('br'),document.createTextNode(tip(i,d)));lb.append(cb,t);box.append(lb)})}
   if(pro()){const ta=document.createElement('textarea');ta.placeholder='Notas de tu avance: qué te falta, fechas de citas...';ta.setAttribute('aria-label','Notas de seguimiento');ta.value=ls.g(K.n)||'';ta.oninput=()=>ls.s(K.n,ta.value);box.append(ta)}
   const eb=el('div','dat');eb.append(el('b',0,'Estado de tus consultas'));
   const rf=()=>{const rb=el('button','lnk','Actualizar');rb.type='button';rb.onclick=()=>{EST=null;render()};eb.append(rb)};
