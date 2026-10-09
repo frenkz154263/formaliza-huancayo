@@ -375,8 +375,21 @@ main>section.cover:first-child{padding:clamp(100px,10vw,130px) clamp(18px,3vw,58
         <li>Rellena los datos de tu negocio</li>
         <li>Ve toda la información para formalizarte</li>
         <li>Contacto con el grupo de WhatsApp</li>
+        <li class="no">Estado de tus consultas</li>
       </ul>
       <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="pill" id="trial" type="button">Regístrate gratis</button></div>
+    </article>
+    <article class="plan pro rv">
+      <h3>Suscripción</h3>
+      <div class="price">S/ 49.90<small>al mes</small></div>
+      <p style="font-size:14px;color:var(--dim)">Sigue el estado de tus consultas con nuestro equipo.</p>
+      <ul>
+        <li>Todo lo del plan gratis</li>
+        <li>Ver el estado de tus consultas</li>
+        <li>Tu próximo paso y los mensajes del equipo</li>
+        <li>Pagas mes a mes, sin permanencia</li>
+      </ul>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="pill" id="sub" type="button">Pagar S/ 49.90</button></div>
     </article>
   </div>
 </div></section>
@@ -403,8 +416,8 @@ document.body.insertAdjacentHTML('beforeend',
 '<div><h4>Proyecto</h4><a href="#contacto">Contacto</a></div>'+
 '<div><h4>Ciudad</h4><a href="#home">Huancayo, Junín</a><a href="#home">Perú</a></div>'+
 '</div><div class="legal"><span>© 2026 Formaliza Fácil Huancayo</span><span>Proyecto provisional. Información orientativa.</span></div></div></footer>'+
-'<dialog id="dlg" aria-labelledby="dlt"><h3 id="dlt">Suscripción · S/ 49.90 al mes</h3><p>Déjanos tu correo para activar tu plan. Los pagos aún no están conectados: por ahora registramos tu interés y te avisamos cuando abramos.</p>'+
-'<form id="pf" novalidate style="display:block;margin:14px 0 0"><label for="pe" style="position:absolute;left:-9999px">Correo</label><input id="pe" type="email" placeholder="tucorreo@ejemplo.com" autocomplete="email" style="width:100%"><p id="pm" role="status"></p><div class="row"><button class="go" type="submit">Continuar</button><button type="button" id="px">Cancelar</button></div></form></dialog>'+
+'<dialog id="dlg" aria-labelledby="dlt"><h3 id="dlt">Estado de tus consultas · S/ 49.90 al mes</h3><p>Con la suscripción ves en tu cuenta el estado de tus consultas: en qué va tu caso y qué sigue. El registro y el grupo de WhatsApp siguen siendo gratis.</p><div id="pay"></div>'+
+'<form id="pf" novalidate style="display:block;margin:14px 0 0"><label for="pe">Código de operación de tu pago</label><input id="pe" type="text" maxlength="40" autocomplete="off" style="width:100%"><p id="pm" role="status"></p><div class="row"><button class="go" type="submit">Ya pagué, enviar</button><button type="button" id="px">Cancelar</button></div></form></dialog>'+
 '<dialog id="rdlg" aria-labelledby="rdt"><h3 id="rdt">Regístrate gratis</h3><p>Crea tu cuenta con tu correo y una contraseña: rellena los datos de tu negocio, mira toda la información para formalizarte y entra al grupo de WhatsApp. Sin tarjeta.</p>'+
 '<form id="rf" novalidate style="display:block;margin:14px 0 0"><label for="re" style="position:absolute;left:-9999px">Correo</label><input id="re" type="email" placeholder="tucorreo@ejemplo.com" autocomplete="email" style="width:100%"><input id="rp" type="password" placeholder="Crea una contraseña (mínimo 6 caracteres)" autocomplete="new-password" style="width:100%;margin-top:10px"><input id="rp2" type="password" placeholder="Repite la contraseña" autocomplete="new-password" style="width:100%;margin-top:10px"><div class="df" style="margin-top:14px"><div class="full"><label for="rn">Nombre de tu negocio</label><input id="rn" type="text" maxlength="60" placeholder="Ej. Bodega San José"></div><div><label for="rr">Rubro</label><select id="rr"><option value="Comercio">Comercio</option><option value="Servicios">Servicios</option><option value="Producción">Producción</option><option value="Alimentos">Alimentos</option></select></div><div><label for="rd">Distrito</label><select id="rd"><option value="Huancayo">Huancayo</option><option value="El Tambo">El Tambo</option><option value="Chilca">Chilca</option><option value="Otro">Otro</option></select></div><div><label for="rl">¿Dónde trabajas?</label><select id="rl"><option value="fijo">Local fijo</option><option value="mercado">Puesto en mercado o galería</option><option value="casa">Desde mi casa</option><option value="ambul">Ambulante</option></select></div><div><label for="ru">¿Ya tienes RUC?</label><select id="ru"><option value="no">No</option><option value="si">Sí</option></select></div><div><label for="ri">¿Ya tienes licencia de funcionamiento?</label><select id="ri"><option value="no">No</option><option value="si">Sí</option></select></div><div><label for="rc">¿Emites boletas o facturas?</label><select id="rc"><option value="no">No</option><option value="si">Sí</option></select></div><div><label for="rk">¿Tu producto tiene nombre o logo propio?</label><select id="rk"><option value="no">No</option><option value="si">Sí</option></select></div><div><label for="rt">Trabajadores (sin contarte)</label><input id="rt" type="number" min="0" max="999" value="0"></div><div class="full"><label style="display:flex;gap:8px;align-items:flex-start;text-transform:none;font-size:13px"><input id="rok" type="checkbox" style="width:18px;min-width:18px;flex:none;margin:2px 0 0;padding:0"><span>Acepto que me contacten para el seguimiento de mi formalización.</span></label></div></div><p id="rm" role="status"></p><div class="row"><button class="go" type="submit">Registrarme</button><button type="button" id="rx">Cancelar</button></div><p class="alt">¿Ya tienes cuenta? <button type="button" id="r2l">Inicia sesión</button></p></form></dialog>'+
 '<dialog id="ldlg" aria-labelledby="ldt"><h3 id="ldt">Iniciar sesión</h3><p>Entra con tu correo y tu contraseña para ver tu ruta y tus datos.</p>'+
@@ -474,12 +487,24 @@ size();draw();addEventListener('resize',()=>{size();if(reduce)draw()});
 
 /* diálogos */
 const dlg=$('dlg'),rdlg=$('rdlg'),pm=$('pm');
-if($('sub'))$('sub').onclick=()=>{pm.textContent='';dlg.showModal()};
+const PAGO={yape:'',plin:'',nombre:'',link:''};
+function abrirPago(){pm.textContent='';const h=[];
+ if(PAGO.yape)h.push('<p><b>Yape:</b> '+PAGO.yape+'</p>');if(PAGO.plin)h.push('<p><b>Plin:</b> '+PAGO.plin+'</p>');if(PAGO.nombre)h.push('<p>A nombre de <b>'+PAGO.nombre+'</b></p>');
+ if(PAGO.link)h.push('<p><a class="pill" href="'+PAGO.link+'" target="_blank" rel="noopener noreferrer">Pagar S/ 49.90 en línea</a></p>');
+ if(!h.length)h.push('<p>Para pagar, escríbenos por el grupo de WhatsApp y te indicamos cómo.</p>');
+ $('pay').innerHTML='<p>Paga <b>S/ 49.90</b> al mes y luego escribe aquí el código de operación para que lo verifiquemos.</p>'+h.join('');dlg.showModal()}
+const pedirPago=()=>logged()?abrirPago():(pend=abrirPago,openR());
+if($('sub'))$('sub').onclick=pedirPago;
 $('px').onclick=()=>dlg.close();
 dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
-$('pf').addEventListener('submit',e=>{e.preventDefault();const v=$('pe').value.trim();
- if(!MAIL.test(v)){pm.className='err';pm.textContent='Escribe un correo válido, por ejemplo nombre@correo.com.';return}
- pm.className='';pm.textContent='Listo. Te avisaremos cuando se active el pago de S/ 49.90.';sendAviso(v,'Suscripción (interesado)');e.target.reset()});
+$('pf').addEventListener('submit',async e=>{e.preventDefault();const c=$('pe').value.trim(),u=user();
+ if(c.length<4){pm.className='err';pm.textContent='Escribe el código de operación de tu pago.';return}
+ if(!u){pm.className='err';pm.textContent='Inicia sesión para registrar tu pago.';return}
+ const b=e.target.querySelector('.go');b.disabled=true;
+ try{const r=await api({accion:'pago',correo:u.email,token:u.token,codigo:c});
+  if(r&&r.ok){pm.className='';pm.textContent='Recibimos tu pago. Lo verificamos y activamos tu suscripción.';e.target.reset();EST=null;render()}
+  else{pm.className='err';pm.textContent='No pudimos registrar el pago. Inténtalo otra vez.'}
+ }catch(err){pm.className='err';pm.textContent='No hay conexión con el servidor. Inténtalo otra vez.'}finally{b.disabled=false}});
 const openR=()=>{$('rm').textContent='';rdlg.showModal()};
 if($('trial'))$('trial').onclick=openR;
 $('rx').onclick=()=>rdlg.close();
@@ -522,7 +547,7 @@ async function api(p){
 const fromSheet=d=>({nombre:d.nombre||'',rubro:d.rubro||'Comercio',distrito:d.distrito||'Huancayo',local:REV[d.donde]||'fijo',ruc:YNR(d.ruc)||'no',lic:YNR(d.licencia)||'no',comp:YNR(d.comprobantes)||'no',marca:YNR(d.marca)||'no',trab:parseInt(d.trabajadores)||0});
 const bizRow=(d,email)=>({correo:email,nombre:d.nombre||'',rubro:d.rubro||'',distrito:d.distrito||'',donde:LOC[d.local]||'',ruc:YNL(d.ruc),licencia:YNL(d.lic),comprobantes:YNL(d.comp),marca:YNL(d.marca),trabajadores:d.trab});
 
-const LOCK='<div class="lock"><b>Plan suscripción · S/ 49.90 al mes</b><br>Desbloquea el resto de la información, la ruta personalizada, el seguimiento y el acompañamiento personal.<br><a href="#planes">Ver planes →</a></div>';
+const LOCK='<div class="lock"><b>Estado de tus consultas · S/ 49.90 al mes</b><br>Con la suscripción ves el estado de tus consultas con nuestro equipo.<br><a href=\"#planes\">Ver planes →</a></div>';
 const LAB={ok:'Listo',todo:'Por hacer',rev:'Por revisar',na:'No aplica'};
 const status=d=>{const r=d.ruc==='si',l=d.lic==='si',t=+d.trab>0;return['ok',r?'ok':'todo',l?'ok':'todo',r?'rev':'todo','rev',t?'todo':'na','rev','rev']};
 function tip(i,d){const m=d.distrito==='Otro'?'tu municipalidad':'la Municipalidad de '+d.distrito,al=d.rubro==='Alimentos'?' Por ser de alimentos, consulta también los requisitos sanitarios.':'';
@@ -537,9 +562,12 @@ const eff=(d,i)=>{const o=prog()[i];return o&&o.s?o.s:status(d)[i]};
 function syncProg(d){const q=prog(),e=steps.map((x,i)=>eff(d,i)),n=e.filter(x=>x==='ok').length;
  sendSheet({accion:'avance',avance:n+' de 8 listos',detalle:steps.map((x,i)=>x[0]+': '+ST[e[i]]+(q[i]&&q[i].at?' ('+q[i].at+')':'')).join(' · '),json:JSON.stringify(q)})}
 function setSt(d,i,v){const q=prog();if(v===status(d)[i])delete q[i];else q[i]={s:v,at:new Date().toLocaleDateString('es-PE')};ls.s(K.p,q);syncProg(d);render()}
+let EST=null;
+async function cargarEstado(){const u=user();if(!u)return;try{EST=await api({accion:'estado',correo:u.email,token:u.token});if(EST&&EST.error==='auth'){ls.r(K.u);EST=null}}catch(e){EST={ok:false}}render()}
 function render(){
  if(user()&&!user().token)ls.r(K.u);
  const u=user();
+ if(!u)EST=null;else if(EST===null){EST={cargando:1};cargarEstado()}
  $('acct').textContent=u?'Cuenta: '+u.email.split('@')[0].slice(0,12):'Registrarse';$('login').style.display=u?'none':'';
  gateGuia();
  if(!$('sum'))return;
@@ -563,8 +591,17 @@ function render(){
    ord.forEach(i=>{const lb=el('label','rt'),cb=document.createElement('input');cb.type='checkbox';cb.checked=ef[i]==='ok';cb.onchange=()=>setSt(d,i,cb.checked?'ok':'todo');
     const o=prog()[i],t=el('span');t.append(el('b',0,steps[i][0]+' · '+ST[ef[i]]+(o&&o.at?' · '+o.at:'')),el('br'),document.createTextNode(tip(i,d)));lb.append(cb,t);box.append(lb)})}
   if(pro()){const ta=document.createElement('textarea');ta.placeholder='Notas de tu avance: qué te falta, fechas de citas...';ta.setAttribute('aria-label','Notas de seguimiento');ta.value=ls.g(K.n)||'';ta.oninput=()=>ls.s(K.n,ta.value);box.append(ta)}
+  const eb=el('div','dat');eb.append(el('b',0,'Estado de tus consultas'));
+  const rf=()=>{const rb=el('button','lnk','Actualizar');rb.type='button';rb.onclick=()=>{EST=null;render()};eb.append(rb)};
+  if(!EST||EST.cargando)eb.append(el('p','sm','Cargando…'));
+  else if(!EST.ok){eb.append(el('p','sm','No pudimos consultar tu estado ahora. Inténtalo más tarde.'));rf()}
+  else if(EST.paid){[['Estado',EST.estado],['Último contacto',EST.ultimo],['Próximo paso',EST.proximo],['Mensaje del equipo',EST.mensaje],['Suscripción vigente hasta',EST.vigente]].forEach(x=>{if(x[1])eb.append(el('p','sm',x[0]+': '+x[1]))});
+   if(!EST.estado&&!EST.ultimo&&!EST.proximo&&!EST.mensaje)eb.append(el('p','sm','Aún no hay novedades de tu consulta. Cuando el equipo te contacte, lo verás aquí.'));rf()}
+  else{eb.append(el('p','sm',EST.pago==='Por verificar'?'Tu pago está en verificación. Cuando lo confirmemos verás aquí el estado de tus consultas.':'Con la suscripción de S/ 49.90 al mes ves aquí el estado de tus consultas. El registro y el grupo de WhatsApp siguen siendo gratis.'));
+   if(EST.pago!=='Por verificar'){const pb=el('button','pill','Pagar S/ 49.90');pb.type='button';pb.onclick=abrirPago;eb.append(pb)}}
+  box.append(eb);
   const wa=el('a','pill','Contactar al grupo de WhatsApp');wa.href=WA;wa.target='_blank';wa.rel='noopener noreferrer';
-  const out=el('button','lnk','Salir');out.type='button';out.onclick=()=>{[K.u,K.d,K.p,K.n].forEach(k=>ls.r(k));render()};
+  const out=el('button','lnk','Salir');out.type='button';out.onclick=()=>{[K.u,K.d,K.p,K.n].forEach(k=>ls.r(k));EST=null;render()};
   const row=el('div');row.style.marginTop='12px';row.append(wa,out);box.append(row);
  }else{
   box.append(el('h4',0,'Regístrate gratis'),el('p','sm','Crea tu cuenta con tu correo y una contraseña: rellena los datos de tu negocio, mira toda la información para formalizarte y entra al grupo de WhatsApp. Sin tarjeta.'));
