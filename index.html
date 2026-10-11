@@ -425,7 +425,7 @@ main>section.cover:first-child{padding:clamp(100px,10vw,130px) clamp(18px,3vw,58
         <li>Rellena los datos de tu negocio</li>
         <li>Ve toda la información para formalizarte</li>
         <li>Contacto con el grupo de WhatsApp</li>
-        <li class="no">Asesoramiento contable inicial</li>
+        <li class="no">Asesoramiento contable</li>
         <li class="no">Estado de tus consultas</li>
       </ul>
       <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="pill" id="trial" type="button">Regístrate gratis</button></div>
@@ -436,7 +436,7 @@ main>section.cover:first-child{padding:clamp(100px,10vw,130px) clamp(18px,3vw,58
       <p style="font-size:14px;color:var(--dim)">Sigue el estado de tus consultas con nuestro equipo.</p>
       <ul>
         <li>Todo lo del plan gratis</li>
-        <li>Asesoramiento contable inicial</li>
+        <li>Asesoramiento contable</li>
         <li>Ver el estado de tus consultas</li>
         <li>Tu próximo paso y los mensajes del equipo</li>
         <li>Pagas mes a mes, sin permanencia</li>
@@ -468,7 +468,7 @@ document.body.insertAdjacentHTML('beforeend',
 '<div><h4>Proyecto</h4><a href="#contacto">Contacto</a></div>'+
 '<div><h4>Ciudad</h4><a href="#home">Huancayo, Junín</a><a href="#home">Perú</a></div>'+
 '</div><div class="legal"><span>© 2026 Formaliza Fácil Huancayo</span><span data-c="pie_aviso">Proyecto provisional. Información orientativa.</span></div></div></footer>'+
-'<dialog id="dlg" aria-labelledby="dlt"><h3 id="dlt">Estado de tus consultas · S/ 49.90 al mes</h3><p>Con la suscripción recibes asesoramiento contable inicial y ves en tu cuenta el estado de tus consultas: en qué va tu caso y qué sigue. El registro y el grupo de WhatsApp siguen siendo gratis.</p><div id="pay"></div>'+
+'<dialog id="dlg" aria-labelledby="dlt"><h3 id="dlt">Estado de tus consultas · S/ 49.90 al mes</h3><p>Con la suscripción recibes asesoramiento contable y ves en tu cuenta el estado de tus consultas: en qué va tu caso y qué sigue. El registro y el grupo de WhatsApp siguen siendo gratis.</p><div id="pay"></div>'+
 '<form id="pf" novalidate style="display:block;margin:14px 0 0"><label for="pe">Código de operación de tu pago</label><input id="pe" type="text" maxlength="40" autocomplete="off" style="width:100%"><p id="pm" role="status"></p><div class="row"><button class="go" type="submit">Ya pagué, enviar</button><button type="button" id="px">Cancelar</button></div></form></dialog>'+
 '<dialog id="rdlg" aria-labelledby="rdt"><h3 id="rdt">Regístrate gratis</h3><p>Crea tu cuenta con tu correo y una contraseña: rellena los datos de tu negocio, mira toda la información para formalizarte y entra al grupo de WhatsApp. Sin tarjeta.</p>'+
 '<form id="rf" novalidate style="display:block;margin:14px 0 0"><label for="re" style="position:absolute;left:-9999px">Correo</label><input id="re" type="email" placeholder="tucorreo@ejemplo.com" autocomplete="email" style="width:100%"><input id="rp" type="password" placeholder="Crea una contraseña (mínimo 6 caracteres)" autocomplete="new-password" style="width:100%;margin-top:10px"><input id="rp2" type="password" placeholder="Repite la contraseña" autocomplete="new-password" style="width:100%;margin-top:10px"><div class="df" style="margin-top:14px"><div class="full"><label for="rn">Nombre de tu negocio</label><input id="rn" type="text" maxlength="60" placeholder="Ej. Bodega San José"></div><div><label for="rr">Rubro</label><select id="rr"><option value="Comercio">Comercio</option><option value="Servicios">Servicios</option><option value="Producción">Producción</option><option value="Alimentos">Alimentos</option></select></div><div><label for="rd">Distrito</label><select id="rd"><option value="Huancayo">Huancayo</option><option value="El Tambo">El Tambo</option><option value="Chilca">Chilca</option><option value="Otro">Otro</option></select></div><div><label for="rl">¿Dónde trabajas?</label><select id="rl"><option value="fijo">Local fijo</option><option value="mercado">Puesto en mercado o galería</option><option value="casa">Desde mi casa</option><option value="ambul">Ambulante</option></select></div><div><label for="ru">¿Ya tienes RUC?</label><select id="ru"><option value="no">No</option><option value="si">Sí</option></select></div><div><label for="ri">¿Ya tienes licencia de funcionamiento?</label><select id="ri"><option value="no">No</option><option value="si">Sí</option></select></div><div><label for="rc">¿Emites boletas o facturas?</label><select id="rc"><option value="no">No</option><option value="si">Sí</option></select></div><div><label for="rk">¿Tu producto tiene nombre o logo propio?</label><select id="rk"><option value="no">No</option><option value="si">Sí</option></select></div><div><label for="rt">Trabajadores (sin contarte)</label><input id="rt" type="number" min="0" max="999" value="0"></div><div class="full"><label style="display:flex;gap:8px;align-items:flex-start;text-transform:none;font-size:13px"><input id="rok" type="checkbox" style="width:18px;min-width:18px;flex:none;margin:2px 0 0;padding:0"><span>Acepto que me contacten para el seguimiento de mi formalización.</span></label></div></div><p id="rm" role="status"></p><div class="row"><button class="go" type="submit">Registrarme</button><button type="button" id="rx">Cancelar</button></div><p class="alt">¿Ya tienes cuenta? <button type="button" id="r2l">Inicia sesión</button></p></form></dialog>'+
@@ -645,7 +645,7 @@ function render(){
   else if(!EST.ok){eb.append(el('p','sm','No pudimos consultar tu estado ahora. Inténtalo más tarde.'));rf()}
   else if(EST.paid){[['Estado',EST.estado],['Último contacto',EST.ultimo],['Próximo paso',EST.proximo],['Mensaje del equipo',EST.mensaje],['Suscripción vigente hasta',EST.vigente]].forEach(x=>{if(x[1])eb.append(el('p','sm',x[0]+': '+x[1]))});
    if(!EST.estado&&!EST.ultimo&&!EST.proximo&&!EST.mensaje)eb.append(el('p','sm','Aún no hay novedades de tu consulta. Cuando el equipo te contacte, lo verás aquí.'));rf()}
-  else{eb.append(el('p','sm',EST.pago==='Por verificar'?'Tu pago está en verificación. Cuando lo confirmemos verás aquí el estado de tus consultas.':'Con la suscripción de S/ 49.90 al mes recibes asesoramiento contable inicial y ves aquí el estado de tus consultas. El registro y el grupo de WhatsApp siguen siendo gratis.'));
+  else{eb.append(el('p','sm',EST.pago==='Por verificar'?'Tu pago está en verificación. Cuando lo confirmemos verás aquí el estado de tus consultas.':'Con la suscripción de S/ 49.90 al mes recibes asesoramiento contable y ves aquí el estado de tus consultas. El registro y el grupo de WhatsApp siguen siendo gratis.'));
    if(EST.pago!=='Por verificar'){const pb=el('button','pill','Pagar S/ 49.90');pb.type='button';pb.onclick=abrirPago;eb.append(pb)}}
   box.append(eb);
   const wa=el('a','pill','Contactar al grupo de WhatsApp');wa.href=WA;wa.target='_blank';wa.rel='noopener noreferrer';
