@@ -268,6 +268,8 @@ main>section.cover:first-child{padding:clamp(100px,10vw,130px) clamp(18px,3vw,58
 .vidl{font-size:13px;margin-top:6px}.vidl a{color:var(--dim)}
 #aviso{flex:1 0 100%;order:99;font-size:13px;background:var(--green);color:#fff;padding:5px 12px;text-align:center}
 #aviso[hidden]{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .card,:root:not([data-theme="light"]) .slot{background:rgba(255,255,255,.04)}:root:not([data-theme="light"]) .card:hover{background:rgba(79,195,205,.1)}}
+:root[data-theme="dark"] .card,:root[data-theme="dark"] .slot{background:rgba(255,255,255,.04)}:root[data-theme="dark"] .card:hover{background:rgba(79,195,205,.1)}
 </style>
 </head>
 <body data-page="home">
@@ -382,7 +384,7 @@ main>section.cover:first-child{padding:clamp(100px,10vw,130px) clamp(18px,3vw,58
 <main class="pg" data-pg="modulos">
 <section><div class="wrap">
   <div class="idx num">01</div>
-  <h2 class="display rv">Nueve módulos</h2>
+  <h2 class="display rv">Módulos</h2>
   <div class="grid">
     <article class="card rv mod" data-m="diag" role="button" tabindex="0" aria-pressed="false" aria-controls="mdet"><em>M-01</em><h3>Diagnóstico</h3><p>Sube los datos de tu negocio y recibe una sugerencia para formalizarte rápido.</p><span class="go">Abrir →</span></article>
     <article class="card rv mod" data-m="ruta" role="button" tabindex="0" aria-pressed="false" aria-controls="mdet"><em>M-02</em><h3>Ruta personalizada</h3><p>Mira de qué manera te podemos guiar, paso a paso.</p><span class="go">Abrir →</span></article>
